@@ -25,9 +25,9 @@
     <div class="jumbotron">
         <h1 class="title">Going somewhere?</h1>
         <p class="lead">Let's find the most energy efficient way to get you there.</p>
-        <p class="lead">
+        <!-- <p class="lead">
             <a class="btn btn-lg" id="letsgo" href="#" role="button">Let's go!</a>
-          </p>
+          </p> -->
       </div>
 
 <main>
@@ -37,13 +37,13 @@
           <div class="col-5">
             <form>
                 <label>Enter your origin:</label>
-                <input></input>
+                <div class="autocomplete-container" id="autocomplete-container"></div>
             </form>
           </div>
           <div class="col-5">
             <form>
                 <label>Enter your destination:</label>
-                <input></input>
+                <div class="autocomplete-container" id="autocomplete-container2"></div>
             </form>
           </div>
 
@@ -84,7 +84,7 @@
           <p class="card-text time" id="biketime"></p>
           <p class="card-text">Estimated greenhouse gases from food:</p>
           <p class="card-text time" id="biketime"></p>
-          <p class="card-text">Biking is faster than walking. That means it's better, right?</p>
+          <p class="card-text">Biking is usually faster than walking. That means it's better, right?</p>
           <a href="#" id=bike" class="btn btn-primary">I've got a flat tire</a>
           <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
         </div>
@@ -103,7 +103,7 @@
           <!--talk about calories from walking to transit stops?-->
           <p class="card-text">If public transit is available in the area you live, it may be the best option for you.</p>
           <a href="#" id="transit" class="btn btn-primary">I get claustrophobic</a>
-          <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
+          <!--Once the button is clicked, grey out the card and put the message saying "I keep my distance from other humans at all times."-->
         </div>
       </div>
 

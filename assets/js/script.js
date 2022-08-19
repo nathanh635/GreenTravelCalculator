@@ -1,5 +1,7 @@
 let goButton = document.querySelector("goButton");
 
+const apiKey = "56f79fc3785a4fc9804d2fe059b6b486";
+
 var map = L.map('map').setView([51.505, -0.09], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -50,7 +52,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
   function getDrive(startLat, startLong, endLat, endLong) {
   
-  fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=drive&apiKey=56f79fc3785a4fc9804d2fe059b6b486`, requestOptions)
+  fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=drive&apiKey=${apiKey}`, requestOptions)
     .then(response => response.json())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -59,7 +61,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
   function getBike(startLat, startLong, endLat, endLong) {
   
-    fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=bicycle&apiKey=56f79fc3785a4fc9804d2fe059b6b486`, requestOptions)
+    fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=bicycle&apiKey=${apiKey}`, requestOptions)
       .then(response => response.json())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -68,7 +70,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
     function getWalk(startLat, startLong, endLat, endLong) {
   
-      fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=walk&apiKey=56f79fc3785a4fc9804d2fe059b6b486`, requestOptions)
+      fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=walk&apiKey=${apiKey}`, requestOptions)
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -79,12 +81,72 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
       function getTransit(startLat, startLong, endLat, endLong) {
   
-        fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=transit&apiKey=56f79fc3785a4fc9804d2fe059b6b486`, requestOptions)
+        fetch(`https://api.geoapify.com/v1/routing?waypoints=${startLat},${startLong}|${endLat},${endLong}&mode=transit&apiKey=${apiKey}`, requestOptions)
           .then(response => response.json())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
       
         }
+
+
+/* 
+    The addressAutocomplete takes a container element (div) as a parameter
+*/
+function addressAutocomplete(containerElement) {
+  // create input element
+  var inputElement = document.createElement("input");
+  inputElement.setAttribute("type", "text");
+  inputElement.setAttribute("placeholder", "Enter an address here");
+  containerElement.appendChild(inputElement);
+
+   /* Active request promise reject function. To be able to cancel the promise when a new request comes */
+   var currentPromiseReject;
+
+   /* Execute a function when someone writes in the text field: */
+   inputElement.addEventListener("input", function(e) {
+     var currentValue = this.value;
+ 
+     // Cancel previous request promise
+     if (currentPromiseReject) {
+       currentPromiseReject({
+         canceled: true
+       });
+     }
+ 
+     if (!currentValue) {
+       return false;
+     }
+ 
+     /* Create a new promise and send geocoding request */
+     var promise = new Promise((resolve, reject) => {
+       currentPromiseReject = reject;
+ 
+       var apiKey = "47f523a46b944b47862e39509a7833a9";
+       var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&limit=5&apiKey=${apiKey}`;
+ 
+       fetch(url)
+         .then(response => {
+           // check if the call was successful
+           if (response.ok) {
+             response.json().then(data => resolve(data));
+           } else {
+             response.json().then(data => reject(data));
+           }
+         });
+     });
+ 
+     promise.then((data) => {
+         // we will process data here
+     }, (err) => {
+       if (!err.canceled) {
+         console.log(err);
+       }
+     });
+   });
+}
+
+addressAutocomplete(document.getElementById("autocomplete-container"));
+addressAutocomplete(document.getElementById("autocomplete-container2"));
 
 
   /* Options for results.
