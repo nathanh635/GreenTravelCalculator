@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet">
+        <!-- Bootstrap CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Travel Calculator</title>
+</head>
+<body>
+    
+    <div class="jumbotron">
+        <h1 class="title">Going somewhere?</h1>
+        <p class="lead">Let's find the most energy efficient way to get you there.</p>
+        <p class="lead">
+            <a class="btn btn-lg" id="letsgo" href="#" role="button">Let's go!</a>
+          </p>
+      </div>
+
+<main>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-5">
+            <form>
+                <label>Enter your origin:</label>
+                <input></input>
+            </form>
+          </div>
+          <div class="col-5">
+            <form>
+                <label>Enter your destination:</label>
+                <input></input>
+            </form>
+          </div>
+
+          <div class="col-sm">
+            <button id="goButton">Let's go</button>
+          </div>  
+        </div>
+      </div>
+
+      <div id="map"></div>
+
+
+
+      <div id="options">
+      <div class="card" style="width: 24rem;">
+        <img class="card-img-top" src="assets/images/walking.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Walking</h5>
+          <p class="card-text">Estimated time:</p>
+          <p class="card-text time" id="walktime"></p>
+          <p class="card-text">Estimated calories burned:</p>
+          <p class="card-text time" id="biketime"></p>
+          <p class="card-text">Estimated greenhouse gases from food:</p>
+          <p class="card-text time" id="biketime"></p>
+          <p class="card-text">Walking is always the simplest option, but not always the most feasible.</p>
+          <a href="#" id="walk" class="btn btn-primary">My legs are broken</a>
+          <!--Once the button is clicked, grey out the card and put the message saying "What do I look like, a horse?"-->
+        </div>
+      </div>
+
+      <div class="card" style="width: 24rem;">
+        <img class="card-img-top" src="assets/images/biking.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Biking</h5>
+          <p class="card-text">Estimated time:</p>
+          <p class="card-text time" id="biketime"></p>
+          <p class="card-text">Estimated calories burned:</p>
+          <p class="card-text time" id="biketime"></p>
+          <p class="card-text">Estimated greenhouse gases from food:</p>
+          <p class="card-text time" id="biketime"></p>
+          <p class="card-text">Biking is faster than walking. That means it's better, right?</p>
+          <a href="#" id=bike" class="btn btn-primary">I've got a flat tire</a>
+          <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
+        </div>
+      </div>
+
+      <div class="card" style="width: 24rem;">
+        <img class="card-img-top" src="assets/images/bus.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Public Transit</h5>
+          <p class="card-text">Estimated time:</p>
+          <p class="card-text time" id="transittime"></p>
+          <p class="card-text">Estimated costs:</p>
+          <p class="card-text time" id="transitcosts"></p>
+          <p class="card-text">Estimated greenhouse gases produced:</p>
+          <p class="card-text time" id="transitcosts"></p>
+          <!--talk about calories from walking to transit stops?-->
+          <p class="card-text">If public transit is available in the area you live, it may be the best option for you.</p>
+          <a href="#" id="transit" class="btn btn-primary">I get claustrophobic</a>
+          <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
+        </div>
+      </div>
+
+      <div class="card" style="width: 24rem;">
+        <img class="card-img-top" src="assets/images/driving.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Driving</h5>
+          <p class="card-text">Estimated time:</p>
+          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text">Estimated gas consumed:</p>
+          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text">Estimated cost for gas:</p>
+          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text">Estimated greenhouse gases produced:</p>
+          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text">Driving is often the most convenient option but not always the most cost effective, or best for the environment.</p>
+          <a href="#" class="btn btn-primary">Gas is too expensive</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>DISCLAIMER</h3>
+    <ul>
+    <li>All calculations here are approximated based on available data. Calories burned through walking or biking will vary from person to person based on a number of individual factors.</li>
+     <li>Gas consumed and greenhouse gases generated is based on tcalculations provided here for a typical _______ vehicle.</li>
+     <li>Greenhouse gas calculations for transit are based on an estimated rider number and averaged over the course of the ____. </li>
+     <li>Gase prices obtained for the location based on the Fuel Prices API. Documentation is located here: </li>
+
+  </ul>
+</main>
+
+<footer>
+
+  <a>Something not working? Click here</a>
+
+</footer>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+crossorigin=""></script>
+
+    <script src="assets/js/script.js"></script>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+
+</body>
+</html>
