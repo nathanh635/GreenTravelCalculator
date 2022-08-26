@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin=""/>
-    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Travel Calculator</title>
@@ -37,7 +36,7 @@
           <div class="col-5">
             <form>
                 <label>Enter your origin:</label>
-                <div class="autocomplete-container" id="autocomplete-container"></div>
+                <div class="autocomplete-container" id="autocomplete-container1"></div>
             </form>
           </div>
           <div class="col-5">
@@ -65,9 +64,9 @@
           <p class="card-text">Estimated time:</p>
           <p class="card-text time" id="walktime"></p>
           <p class="card-text">Estimated calories burned:</p>
-          <p class="card-text time" id="biketime"></p>
+          <p class="card-text time" id="walkcals"></p>
           <p class="card-text">Estimated greenhouse gases from food:</p>
-          <p class="card-text time" id="biketime"></p>
+          <p class="card-text time" id="walkgas"></p>
           <p class="card-text">Walking is always the simplest option, but not always the most feasible.</p>
           <a href="#" id="walk" class="btn btn-primary">My legs are broken</a>
           <!--Once the button is clicked, grey out the card and put the message saying "What do I look like, a horse?"-->
@@ -81,9 +80,9 @@
           <p class="card-text">Estimated time:</p>
           <p class="card-text time" id="biketime"></p>
           <p class="card-text">Estimated calories burned:</p>
-          <p class="card-text time" id="biketime"></p>
+          <p class="card-text time" id="bikecals"></p>
           <p class="card-text">Estimated greenhouse gases from food:</p>
-          <p class="card-text time" id="biketime"></p>
+          <p class="card-text time" id="bikegas"></p>
           <p class="card-text">Biking is usually faster than walking. That means it's better, right?</p>
           <a href="#" id=bike" class="btn btn-primary">I've got a flat tire</a>
           <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
@@ -99,7 +98,7 @@
           <p class="card-text">Estimated costs:</p>
           <p class="card-text time" id="transitcosts"></p>
           <p class="card-text">Estimated greenhouse gases produced:</p>
-          <p class="card-text time" id="transitcosts"></p>
+          <p class="card-text time" id="transitgas"></p>
           <!--talk about calories from walking to transit stops?-->
           <p class="card-text">If public transit is available in the area you live, it may be the best option for you.</p>
           <a href="#" id="transit" class="btn btn-primary">I get claustrophobic</a>
@@ -113,12 +112,12 @@
           <h5 class="card-title">Driving</h5>
           <p class="card-text">Estimated time:</p>
           <p class="card-text time" id="drivetime"></p>
-          <p class="card-text">Estimated gas consumed:</p>
-          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text">Estimated fuel consumed:</p>
+          <p class="card-text time" id="drivefuel"></p>
           <p class="card-text">Estimated cost for gas:</p>
-          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text time" id="drivecost"></p>
           <p class="card-text">Estimated greenhouse gases produced:</p>
-          <p class="card-text time" id="drivetime"></p>
+          <p class="card-text time" id="drivegas"></p>
           <p class="card-text">Driving is often the most convenient option but not always the most cost effective, or best for the environment.</p>
           <a href="#" class="btn btn-primary">Gas is too expensive</a>
         </div>
@@ -132,7 +131,7 @@
      <li>Gas consumed and greenhouse gases generated is based on tcalculations provided here for a typical _______ vehicle.</li>
      <li>Greenhouse gas calculations for transit are based on an estimated rider number and averaged over the course of the ____. </li>
      <li>Gase prices obtained for the location based on the Fuel Prices API. Documentation is located here: </li>
-
+     <li>The map component uses LeafletJS and the map data is from OpenData. </li>
   </ul>
 </main>
 

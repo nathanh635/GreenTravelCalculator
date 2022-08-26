@@ -1,0 +1,23 @@
+{
+  "name": "CarbonFootprint",
+  "version": "1.0.0",
+  "description": "https://justenergy.com/blog/how-to-calculate-your-carbon-footprint/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanh635/GreenTravelCalculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanh635/GreenTravelCalculator/issues"
+  },
+  "dependencies": {
+    "@geoapify/geocoder-autocomplete": "^1.4.1"
+  },
+  "homepage": "https://github.com/nathanh635/GreenTravelCalculator#readme"
+}
