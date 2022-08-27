@@ -1,7 +1,26 @@
-
-
-
 let goButton = document.getElementById("goButton");
+
+//set up walk components to update
+
+let walkTime = document.getElementById("walktime");
+let walkCals = document.getElementById("walkcals");
+let walkGas = document.getElementById("walkgas");
+
+//set up bike components to update
+
+let bikeTime = document.getElementById("biketime");
+let bikeGas = document.getElementById("bikegas");
+let bikeCals = document.getElementById("bikecals");
+
+let driveTime = document.getElementById("drivetime");
+let driveGas = document.getElementById("drivegas");
+let driveFuel = document.getElementById("drivefuel");
+let driveCost = document.getElementById("drivecost");
+
+let transitTime = document.getElementById("transittime");
+let transitGas = document.getElementById("transitgas");
+let transitCost = document.getElementById("transitcost");
+
 let startLat, startLong, endLat, endLong, usa
 
 const apiKey = "56f79fc3785a4fc9804d2fe059b6b486";
@@ -107,9 +126,52 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       return `${layer.feature.properties.distance} ${layer.feature.properties.distance_units}, ${layer.feature.properties.time}`
     }).addTo(map);
 
-    L.map.fitBounds([[startLat, startLon],[endLat, endLong]])
+    map.fitBounds([[startLat, startLong],[endLat, endLong]])
 
-    console.log("got it done");
+    L.marker([startLat, startLong]);
+    L.marker([endLat, endLong]);
+
+    //set the info in the cards
+
+    //set the walk info
+
+    walkTime.textContent = walkData.features[0].properties.time/60
+
+    //walking calories = CB = [0.0215 x KPH3 - 0.1765 x KPH2 + 0.8710 x KPH + 1.4577] x WKG x T
+    //http://www.shapesense.com/fitness-exercise/calculators/walking-calorie-burn-calculator.shtml
+    //Calories burned per minute = (MET x body weight in Kg x 3.5) ÷ 200 https://captaincalculator.com/health/calorie/calories-burned-walking-calculator/
+
+    //mean dietary GHG emissions for 2000 calorie diet, medium meat eaters = 5.63 kgCO2e https://www.researchgate.net/figure/Mean-greenhouse-gas-emissions-per-2-000-kcal-by-diet-type-and-sex_tbl3_263353807
+
+    //ghgs for food : https://ourworldindata.org/grapher/ghg-kcal-poore
+
+    walkCals.textContent = (walkData.features[0].properties.time/60)*((3.5*79.4*3.5)/200)
+    walkGas.textContent = (walkData.features[0].properties.time/60)*((3.5*79.4*3.5)/200)/2000*5.63
+
+
+    //set the bike info
+
+    bikeTime.textContent = bikeData.features[0].properties.time/60
+    //a 175 lb person biking 1 mile would burn 56 calirues @ 12mph https://caloriesburnedhq.com/calories-burned-biking/#:~:text=The%20average%20person%20will%20burn,speed%20and%20time%20spent%20biking.
+    //a 185 lb person biking for a half hour would burn 355 calories https://www.healthline.com/health/how-many-calories-do-you-burn-biking#outdoor-biking
+    //Calories burned per minute = (MET x body weight in Kg x 3.5) ÷ 200 https://captaincalculator.com/health/calorie/calories-burned-cycling-calculator/
+    bikeCals.textContent = (bikeData.features[0].properties.time/60)*((7.5*79.4*3.5)/200) //175 lb person
+
+    bikeGas.textContent = (bikeData.features[0].properties.time/60)*((3.5*79.4*3.5)/200)/2000*5.63
+
+//set the drive info
+//drive gas = Every gallon of gasoline burned creates about 8,887 grams of CO2. source https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#:~:text=typical%20passenger%20vehicle%3F-,A%20typical%20passenger%20vehicle%20emits%20about%204.6%20metric%20tons%20of,8%2C887%20grams%20of%20CO2.
+//For every litre of gasoline your vehicle uses, it generates about 2.3 kilograms of CO2 source https://www.nrcan.gc.ca/energy-efficiency/transportation-alternative-fuels/fuel-consumption-guide/21002
+// In 2017, Canada's average vehicle ranked last in fuel efficiency, consuming an average of 8.9 litres of gasoline per 100 kilometres (L/100km). https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/market-snapshots/2019/market-snapshot-how-does-canada-rank-in-terms-vehicle-fuel-economy.html
+
+let fuelConsumed = driveData.features[0].properties.distance/100000*8.9
+driveFuel.textContent = fuelConsumed
+let driveghgs = fuelConsumed*2.3
+driveGas.textContent = driveghgs
+driveTime.textContent = driveData.features[0].properties.time/60
+
+
+
   // };
   }
 
