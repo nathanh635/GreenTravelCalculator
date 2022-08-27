@@ -17,7 +17,7 @@
         crossorigin=""/>
     <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>Travel Calculator</title>
+    <title>Green Travel Calculator</title>
 </head>
 <body>
     
@@ -55,9 +55,8 @@
       <div id="map"></div>
 
 
-
       <div id="options">
-      <div class="card" style="width: 24rem;">
+      <div id="walkCard" class="card" style="width: 24rem;">
         <img class="card-img-top" src="assets/images/walking.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Walking</h5>
@@ -67,13 +66,13 @@
           <p class="card-text time" id="walkcals"></p>
           <p class="card-text">Estimated greenhouse gases from food:</p>
           <p class="card-text time" id="walkgas"></p>
-          <p class="card-text">Walking is always the simplest option, but not always the most feasible.</p>
-          <a href="#" id="walk" class="btn btn-primary">My legs are broken</a>
+          <!-- <p class="card-text">Walking is always the simplest option, but not always the most feasible.</p> -->
+          <button id="walk" class="btn btn-primary">My legs are broken</button>
           <!--Once the button is clicked, grey out the card and put the message saying "What do I look like, a horse?"-->
         </div>
       </div>
 
-      <div class="card" style="width: 24rem;">
+      <div id="bikeCard" class="card" style="width: 24rem;">
         <img class="card-img-top" src="assets/images/biking.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Biking</h5>
@@ -83,30 +82,30 @@
           <p class="card-text time" id="bikecals"></p>
           <p class="card-text">Estimated greenhouse gases from food:</p>
           <p class="card-text time" id="bikegas"></p>
-          <p class="card-text">Biking is usually faster than walking. That means it's better, right?</p>
-          <a href="#" id=bike" class="btn btn-primary">I've got a flat tire</a>
+          <!-- <p class="card-text">Biking is usually faster than walking. That means it's better, right?</p> -->
+          <button id="bike" class="btn btn-primary">I've got a flat tire</button>
           <!--Once the button is clicked, grey out the card and put the message saying "Biking's too risky in the city!"-->
         </div>
       </div>
 
-      <div class="card" style="width: 24rem;">
+      <div id="transitCard" class="card" style="width: 24rem;">
         <img class="card-img-top" src="assets/images/bus.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Public Transit</h5>
           <p class="card-text">Estimated time:</p>
           <p class="card-text time" id="transittime"></p>
-          <p class="card-text">Estimated costs:</p>
-          <p class="card-text time" id="transitcosts"></p>
+          <!-- <p class="card-text">Estimated costs:</p>
+          <p class="card-text time" id="transitcosts"></p> -->
           <p class="card-text">Estimated greenhouse gases produced:</p>
           <p class="card-text time" id="transitgas"></p>
           <!--talk about calories from walking to transit stops?-->
-          <p class="card-text">If public transit is available in the area you live, it may be the best option for you.</p>
-          <a href="#" id="transit" class="btn btn-primary">I get claustrophobic</a>
+          <!-- <p class="card-text">If public transit is available in the area you live, it may be the best option for you.</p> -->
+          <button id="transit" class="btn btn-primary">I get claustrophobic</button>
           <!--Once the button is clicked, grey out the card and put the message saying "I keep my distance from other humans at all times."-->
         </div>
       </div>
 
-      <div class="card" style="width: 24rem;">
+      <div id="driveCard" class="card" style="width: 24rem;">
         <img class="card-img-top" src="assets/images/driving.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Driving</h5>
@@ -114,12 +113,12 @@
           <p class="card-text time" id="drivetime"></p>
           <p class="card-text">Estimated fuel consumed:</p>
           <p class="card-text time" id="drivefuel"></p>
-          <p class="card-text">Estimated cost for gas:</p>
-          <p class="card-text time" id="drivecost"></p>
+          <!-- <p class="card-text">Estimated cost for gas:</p>
+          <p class="card-text time" id="drivecost"></p> -->
           <p class="card-text">Estimated greenhouse gases produced:</p>
           <p class="card-text time" id="drivegas"></p>
-          <p class="card-text">Driving is often the most convenient option but not always the most cost effective, or best for the environment.</p>
-          <a href="#" class="btn btn-primary">Gas is too expensive</a>
+          <!-- <p class="card-text">Driving is often the most convenient option but not always the most cost effective, or best for the environment.</p> -->
+          <button id="drive" class="btn btn-primary">Gas is too expensive</button>
         </div>
       </div>
 
@@ -127,17 +126,24 @@
 
     <h3>DISCLAIMER</h3>
     <ul>
-    <li>All calculations here are approximated based on available data. Calories burned through walking or biking will vary from person to person based on a number of individual factors.</li>
-     <li>Gas consumed and greenhouse gases generated is based on tcalculations provided here for a typical _______ vehicle.</li>
-     <li>Greenhouse gas calculations for transit are based on an estimated rider number and averaged over the course of the ____. </li>
+    <li>All calculations here are approximated based on available data. </li>
+    <li>Form autocomplete and routing are based on API calls to the <a href="https://www.geoapify.com/">Geoapify API.</a></li>
+      <li>Calories burned through walking or biking will vary from person to person based on a number of individual factors. Calolries were caluclated using formulas from <a href="https://captaincalculator.com/health/calorie">https://captaincalculator.com/health/calorie</a>.
+        Calculations for calories were based on a person weighing 79.4 kg/ 175 lbs.
+      </li>
+     <li>Gas consumed and greenhouse gases generated based on calculations for a typical light-class vehicle.</li>
+     <li>Greenhouse gases from food based on a 2000 kcal diet for a medium meat eater, sourced from here: <a href="https://www.researchgate.net/figure/Mean-greenhouse-gas-emissions-per-2-000-kcal-by-diet-type-and-sex_tbl3_263353807">Dietary greenhouse gas emissions of meat-eaters, fish-eaters, vegetarians and vegans in the UK</a> </li>
+     <li>Fuel consumption approximation (8.9L per 100 km) from <a href="https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/market-snapshots/2019/market-snapshot-how-does-canada-rank-in-terms-vehicle-fuel-economy.html">Canadian Energy Regulator Market Snapshot</a></li>
+     <li>Greenhouse gases produced by vehicles calculated based on information from the <a href="https://www.nrcan.gc.ca/energy-efficiency/transportation-alternative-fuels/fuel-consumption-guide/21002">Government of Canada 2022 Fuel Consumption Guide</a></li>
+     <li>Greenhouse gas calculations for transit are based on data from the <a href="https://www.transit.dot.gov/sites/fta.dot.gov/files/docs/PublicTransportationsRoleInRespondingToClimateChange2010.pdf">US Department of Transportation.</a></li>
      <li>Gase prices obtained for the location based on the Fuel Prices API. Documentation is located here: </li>
-     <li>The map component uses LeafletJS and the map data is from OpenData. </li>
+     <li>The map component uses <a href="https://leafletjs.com/">LeafletJS</a> and the map data is from <a href="https://www.openstreetmap.org/">OpenStreetMap.</a></li>
   </ul>
 </main>
 
 <footer>
 
-  <a>Something not working? Click here</a>
+  <a href="mailto:nathanh635@gmail.com">Comments? Suggestions? Something not working? Click here</a>
 
 </footer>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"

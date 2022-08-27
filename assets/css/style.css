@@ -33,7 +33,7 @@ body {
 }
 
 #map { height: 600px;
-margin-top: 25px;
+margin: 25px;
 border: 5px solid black;
 margin-bottom: 25px; }
 
@@ -100,4 +100,19 @@ margin-bottom: 25px; }
 .autocomplete-items .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  margin: 15px;
+  background-color: rgb(202, 255, 202);
+}
+
+.overlay {
+
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+li {
+  text-align: left;
 }
