@@ -45,14 +45,14 @@
   
   ## Screenshots
 
-  Below is a screenshot of the application.
+  Below are screenshots of the application.
 
-![screenshot1](./assets/Screenshot1-splashpage.PNG)
-![screenshot2](./assets/view%20of%20indexedDB.PNG)
+![screenshot1](./assets/images/Screenshot1.PNG)
+![screenshot2](./assets/images/screenshot2.PNG)
   
 ## Links
 
-  Repository: https://github.com/nathanh635/Social-Network
+  Repository: https://github.com/nathanh635/GreenTravelCalculator
   
-  Heroku Deployment: https://radiant-temple-37153.herokuapp.com/
+  Deployment: https://nathanh635.github.io/GreenTravelCalculator/
 
